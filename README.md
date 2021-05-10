@@ -1,9 +1,10 @@
-# Android Kotlin + Koin + Retrofit + Coroutines Boilerplate 🎉 🥰
+# Projet Android Avancés 📱
 
-Android Boilerplate project that use Kotlin, Koin, MVVM, Retrofit, OkHTTP and CoRoutines
+###### tags: `Tag(En cours)`
 
-It's a minimal, logicless boilerplate, clone it, code over it. Done.
+> Dernière mise à jour le 10 Mai 2021
 
-Almost no extra code to remove.
+## :memo: Application Client / Serveur
 
-<img src="./capture.png" width="300px" />
+### Step 1: 
+
