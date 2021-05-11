@@ -1,11 +1,13 @@
 package com.android_app_project.app.ui.domain.repository
 
+import com.android_app_project.app.data.models.LoginResult
 import com.android_app_project.app.data.remote.SampleRemoteDataSource
 import kotlinx.coroutines.delay
 
 interface SampleRemoteRepository {
     suspend fun ping(): String
     suspend fun getVersion(): String
+    suspend fun login(login: String,password: String): Int
 }
 
 class SampleRemoteRemoteRepositoryImpl(private val sampleRemoteDataSource: SampleRemoteDataSource) :
@@ -23,6 +25,10 @@ class SampleRemoteRemoteRepositoryImpl(private val sampleRemoteDataSource: Sampl
 
     override suspend fun getVersion(): String {
         return sampleRemoteDataSource.restInfo().release
+    }
+
+    override suspend fun login(login: String,password: String): Int {
+        return sampleRemoteDataSource.readUsers(login,password)
     }
 }
 

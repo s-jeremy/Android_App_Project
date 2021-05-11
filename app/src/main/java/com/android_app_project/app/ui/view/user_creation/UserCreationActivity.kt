@@ -32,6 +32,7 @@ class UserCreationActivity : AppCompatActivity()  {
         binding = ActivityUserCreationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Gestion de l'affichage du mot de passe
         password.transformationMethod = PasswordTransformationMethod.getInstance()
         binding.buttonShow.setOnClickListener {
             if(buttonShow.text.toString().equals("Montrer")){
@@ -43,8 +44,13 @@ class UserCreationActivity : AppCompatActivity()  {
             }
         }
 
+        // Lancement de l'activity Login après un clic sur le bouton Retour
         binding.buttonBack.setOnClickListener {
             startActivity(LoginActivity.getStartIntent(this))
+        }
+
+        binding.buttonValidateCreation.setOnClickListener {
+            //TODO
         }
 
     }
