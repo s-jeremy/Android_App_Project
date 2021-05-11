@@ -13,6 +13,7 @@ import com.android_app_project.app.R
 import com.android_app_project.app.data.remote.SampleRemoteDataSource
 import com.android_app_project.app.databinding.ActivityLoginBinding
 import com.android_app_project.app.ui.view.Failed
+import com.android_app_project.app.ui.view.main.MainActivity
 import com.android_app_project.app.ui.view.user_creation.UserCreationActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -58,9 +59,10 @@ class LoginActivity : AppCompatActivity()  {
 
     private fun showInformation(status: String) {
         Log.d("Resultat de Login: :", status)
-        //Toast.makeText(this,version,Toast.LENGTH_SHORT).show()
-        //Toast.makeText(this,status,Toast.LENGTH_SHORT).show()
-        //Toast.makeText(this@LoginActivity, "Résultat de l'authentification" + myViewModel, Toast.LENGTH_SHORT).show()
+        if(status == "0"){
+            startActivity(MainActivity.getStartIntent(this))
+        }
+
     }
 
 }
