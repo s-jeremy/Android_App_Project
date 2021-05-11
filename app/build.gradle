@@ -7,6 +7,10 @@ android {
     compileSdkVersion android_target_version
     buildToolsVersion "29.0.3"
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         applicationId "com.android_app_project.app"
         minSdkVersion android_min_version

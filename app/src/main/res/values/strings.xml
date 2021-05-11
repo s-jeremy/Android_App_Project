@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Projet Android Avancé</string>
+    <string name="inputUserLogin">Entrer son user</string>
+    <string name="inputPasswordLogin">Entrer son mot de passe</string>
+    <string name="validate">Valider</string>
+    <string name="userCreation">Si non ? Créer votre utilisateur</string>
+    <string name="inputFirstName">Prénom</string>
+    <string name="inputLastName">Nom</string>
+    <string name="inputUsername">Nom d\'utilisateur</string>
+    <string name="inputEmail">Email</string>
+    <string name="inputPassword">Mot de passe</string>
+    <string name="back">Retour</string>
+    <string name="show">Montrer</string>
 </resources>

@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.android_app_project.app.ui.view.info.InfoActivity"/>
+        <activity android:name="com.android_app_project.app.ui.view.login.LoginActivity"/>
+        <activity android:name="com.android_app_project.app.ui.view.user_creation.UserCreationActivity"/>
         <activity android:name="com.android_app_project.app.ui.view.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
