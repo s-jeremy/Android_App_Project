@@ -17,10 +17,10 @@ class LoginViewModel(
 
     data class LoginResult(val status: Int) : ViewModelState()
 
-    fun login() {
+    fun login( login: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val status = sampleRemoteRepository.login("test","test")
+                val status = sampleRemoteRepository.login(login,password)
                 states.postValue(LoginResult(status))
             } catch (err: Exception) {
                 states.postValue(Failed(err))

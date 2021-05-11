@@ -3,10 +3,12 @@ package com.android_app_project.app.ui.view.login
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.android_app_project.app.R
 import com.android_app_project.app.data.remote.SampleRemoteDataSource
 import com.android_app_project.app.databinding.ActivityLoginBinding
@@ -41,22 +43,12 @@ class LoginActivity : AppCompatActivity()  {
             startActivity(UserCreationActivity.getStartIntent(this))
         }
 
-        /*binding.buttonValidate.setOnClickListener {
-            CoroutineScope(Dispatchers.IO).launch {
-                runCatching {
-                    //SampleRemoteDataSource.instance.readUsers(binding.userLogin.toString(), binding.passwordLogin.toString())
-                    val arrStatus = myViewModel.states
-                    runOnUiThread{
-                        //dataSource.addAll(arrStatus)
-                        Toast.makeText(this@LoginActivity,"test",Toast.LENGTH_SHORT).show()
-                        //Toast.makeText(this@LoginActivity, "Résultat de l'authentificatin" + arrStatus.value, Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+        binding.buttonValidate.setOnClickListener {
+            myViewModel.login(binding.userLogin.text.toString(), binding.passwordLogin.text.toString())
         }
-    }*/
-        myViewModel.states.observe(this, { state ->
-            when(state) {
+
+        myViewModel.states.observe(this,Observer { state ->
+            when(state){
                 is LoginViewModel.LoginResult -> showInformation(state.status.toString())
                 is Failed -> finish()
             }
@@ -64,14 +56,8 @@ class LoginActivity : AppCompatActivity()  {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        myViewModel.login()
-    }
-
     private fun showInformation(status: String) {
-        findViewById<Button>(R.id.buttonValidate).text = status
-        print("Resultat de Login: " + status)
+        Log.d("Resultat de Login: :", status)
         //Toast.makeText(this,version,Toast.LENGTH_SHORT).show()
         //Toast.makeText(this,status,Toast.LENGTH_SHORT).show()
         //Toast.makeText(this@LoginActivity, "Résultat de l'authentification" + myViewModel, Toast.LENGTH_SHORT).show()

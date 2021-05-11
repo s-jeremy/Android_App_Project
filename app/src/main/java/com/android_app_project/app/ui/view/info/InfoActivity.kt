@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.android_app_project.app.R
 import com.android_app_project.app.ui.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -23,9 +24,8 @@ class InfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info)
-
-        myViewModel.states.observe(this, { state ->
-            when(state) {
+        myViewModel.states.observe(this, Observer { state ->
+            when(state){
                 is InfoViewModel.GetVersionResult -> showInformation(state.version)
                 is Failed -> finish()
             }
