@@ -1,4 +1,4 @@
-package com.android_app_project.app.view
+package com.android_app_project.app.ui.view
 
 /**
  * Abstract State pushed by ViewModel

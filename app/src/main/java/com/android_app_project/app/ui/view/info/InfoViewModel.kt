@@ -1,11 +1,11 @@
-package com.android_app_project.app.view.info
+package com.android_app_project.app.ui.view.info
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android_app_project.app.domain.repository.SampleRemoteRepository
-import com.android_app_project.app.utils.mvvm.BaseViewModel
-import com.android_app_project.app.view.Failed
-import com.android_app_project.app.view.ViewModelState
+import com.android_app_project.app.ui.domain.repository.SampleRemoteRepository
+import com.android_app_project.app.ui.utils.mvvm.BaseViewModel
+import com.android_app_project.app.ui.view.Failed
+import com.android_app_project.app.ui.view.ViewModelState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception

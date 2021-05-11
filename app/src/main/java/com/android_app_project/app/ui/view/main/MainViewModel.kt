@@ -1,11 +1,11 @@
-package com.android_app_project.app.view.main
+package com.android_app_project.app.ui.view.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android_app_project.app.domain.repository.SampleLocalRepository
-import com.android_app_project.app.domain.repository.SampleRemoteRepository
-import com.android_app_project.app.utils.mvvm.BaseViewModel
-import com.android_app_project.app.view.*
+import com.android_app_project.app.ui.domain.repository.SampleLocalRepository
+import com.android_app_project.app.ui.domain.repository.SampleRemoteRepository
+import com.android_app_project.app.ui.utils.mvvm.BaseViewModel
+import com.android_app_project.app.ui.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception

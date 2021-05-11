@@ -1,4 +1,4 @@
-package com.android_app_project.app.di
+package com.android_app_project.app.ui.di
 
 import com.android_app_project.app.BuildConfig
 import com.android_app_project.app.data.remote.SampleRemoteDataSource

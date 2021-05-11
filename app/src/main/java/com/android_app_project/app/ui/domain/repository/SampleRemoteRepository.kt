@@ -1,4 +1,4 @@
-package com.android_app_project.app.domain.repository
+package com.android_app_project.app.ui.domain.repository
 
 import com.android_app_project.app.data.remote.SampleRemoteDataSource
 import kotlinx.coroutines.delay

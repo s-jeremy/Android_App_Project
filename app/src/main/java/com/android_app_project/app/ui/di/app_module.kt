@@ -1,11 +1,11 @@
-package com.android_app_project.app.di
+package com.android_app_project.app.ui.di
 
-import com.android_app_project.app.domain.repository.SampleLocalRepository
-import com.android_app_project.app.domain.repository.SampleLocalRepositoryImpl
-import com.android_app_project.app.domain.repository.SampleRemoteRepository
-import com.android_app_project.app.domain.repository.SampleRemoteRemoteRepositoryImpl
-import com.android_app_project.app.view.info.InfoViewModel
-import com.android_app_project.app.view.main.MainViewModel
+import com.android_app_project.app.ui.domain.repository.SampleLocalRepository
+import com.android_app_project.app.ui.domain.repository.SampleLocalRepositoryImpl
+import com.android_app_project.app.ui.domain.repository.SampleRemoteRepository
+import com.android_app_project.app.ui.domain.repository.SampleRemoteRemoteRepositoryImpl
+import com.android_app_project.app.ui.view.info.InfoViewModel
+import com.android_app_project.app.ui.view.main.MainViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

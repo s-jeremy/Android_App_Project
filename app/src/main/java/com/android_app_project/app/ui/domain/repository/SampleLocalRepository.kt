@@ -1,4 +1,4 @@
-package com.android_app_project.app.domain.repository
+package com.android_app_project.app.ui.domain.repository
 
 import kotlinx.coroutines.delay
 

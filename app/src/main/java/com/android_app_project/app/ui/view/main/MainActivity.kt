@@ -1,4 +1,4 @@
-package com.android_app_project.app.view.main
+package com.android_app_project.app.ui.view.main
 
 import android.content.Context
 import android.content.Intent
@@ -11,8 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import com.android_app_project.app.R
-import com.android_app_project.app.view.*
-import com.android_app_project.app.view.info.InfoActivity
+import com.android_app_project.app.ui.view.*
+import com.android_app_project.app.ui.view.info.InfoActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {

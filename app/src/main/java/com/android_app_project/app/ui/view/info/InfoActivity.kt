@@ -1,4 +1,4 @@
-package com.android_app_project.app.view.info
+package com.android_app_project.app.ui.view.info
 
 import android.content.Context
 import android.content.Intent
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.android_app_project.app.R
-import com.android_app_project.app.view.*
+import com.android_app_project.app.ui.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class InfoActivity : AppCompatActivity() {
