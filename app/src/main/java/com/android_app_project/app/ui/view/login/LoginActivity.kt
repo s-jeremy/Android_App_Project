@@ -42,6 +42,7 @@ class LoginActivity : AppCompatActivity()  {
 
         binding.buttonCreateUser.setOnClickListener {
             startActivity(UserCreationActivity.getStartIntent(this))
+            overridePendingTransition(R.anim.anim_slide_from_right, R.anim.anim_slide_to_left)
         }
 
         binding.buttonValidate.setOnClickListener {

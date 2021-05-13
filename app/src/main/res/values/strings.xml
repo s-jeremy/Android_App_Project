@@ -3,7 +3,7 @@
     <string name="inputUserLogin">Entrer son user</string>
     <string name="inputPasswordLogin">Entrer son mot de passe</string>
     <string name="validate">Valider</string>
-    <string name="userCreation">Si non ? Créer votre utilisateur</string>
+    <string name="userCreation">Sinscrire</string>
     <string name="inputFirstName">Prénom</string>
     <string name="inputLastName">Nom</string>
     <string name="inputUsername">Nom d\'utilisateur</string>
@@ -11,4 +11,5 @@
     <string name="inputPassword">Mot de passe</string>
     <string name="back">Retour</string>
     <string name="show">Montrer</string>
+    <string name="login">Connexion</string>
 </resources>

@@ -33,7 +33,7 @@ class UserCreationActivity : AppCompatActivity()  {
         setContentView(binding.root)
 
         // Gestion de l'affichage du mot de passe
-        password.transformationMethod = PasswordTransformationMethod.getInstance()
+        /*password.transformationMethod = PasswordTransformationMethod.getInstance()
         binding.buttonShow.setOnClickListener {
             if(buttonShow.text.toString().equals("Montrer")){
                 password.transformationMethod = HideReturnsTransformationMethod.getInstance()
@@ -42,16 +42,23 @@ class UserCreationActivity : AppCompatActivity()  {
                 password.transformationMethod = PasswordTransformationMethod.getInstance()
                 binding.buttonShow.text = "Montrer"
             }
-        }
+        }*/
 
         // Lancement de l'activity Login après un clic sur le bouton Retour
         binding.buttonBack.setOnClickListener {
             startActivity(LoginActivity.getStartIntent(this))
+            onBackPressed()
+
         }
 
         binding.buttonValidateCreation.setOnClickListener {
             //TODO
         }
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.anim_slide_from_left,R.anim.anim_slide_to_right)
     }
 }
