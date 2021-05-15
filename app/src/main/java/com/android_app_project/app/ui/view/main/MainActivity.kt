@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        findViewById<Button>(R.id.btnLocalAction).setOnClickListener {
+        /*findViewById<Button>(R.id.btnLocalAction).setOnClickListener {
             myViewModel.doLocalTestAction()
         }
 
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.getVersion).setOnClickListener {
             startActivity(InfoActivity.getStartIntent(this))
-        }
+        }*/
     }
 
     private fun showError(error: Throwable) {

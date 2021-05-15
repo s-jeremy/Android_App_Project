@@ -12,4 +12,10 @@
     <string name="back">Retour</string>
     <string name="show">Montrer</string>
     <string name="login">Connexion</string>
+    <string name="concept">Concept</string>
+    <string name="code">Code</string>
+    <string name="developper">Développeur</string>
+    <string name="page1_title">Concept de collect de data</string>
+    <string name="page2_title">Développée sous Android Kotlin</string>
+    <string name="page3_title">Réalisée par Jérémy et Mehdi</string>
 </resources>
