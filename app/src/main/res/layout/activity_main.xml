@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
+    android:id="@+id/constraint_layout"
+    android:background="@color/colorSecondary"
     tools:context=".ui.view.main.MainActivity">
 
-    <ProgressBar
+    <!--ProgressBar
         android:id="@+id/loader"
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="match_parent"
@@ -48,7 +50,47 @@
         app:layout_constraintBottom_toTopOf="@+id/btnRemoteAction"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLocalAction" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLocalAction" /-->
+
+    <TextView
+        android:id="@+id/hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="Bonjour !"
+        android:textSize="38sp"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintHorizontal_bias=".15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="Menu"
+        android:textColor="@color/colorThirdly"
+        android:textSize="56sp"
+        android:textStyle="bold"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/hello"
+        app:layout_constraintTop_toBottomOf="@+id/hello" />
+
+    <com.hitomi.cmlibrary.CircleMenu
+        android:id="@+id/circle_menu"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintVertical_bias=".7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

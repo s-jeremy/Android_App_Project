@@ -2,18 +2,23 @@ package com.android_app_project.app.ui.view.main
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import com.android_app_project.app.R
 import com.android_app_project.app.ui.view.*
 import com.android_app_project.app.ui.view.info.InfoActivity
+import com.android_app_project.app.ui.view.introduction.IntroductionActivity
+import com.android_app_project.app.ui.view.login.LoginActivity
+import com.android_app_project.app.ui.view.user_creation.UserCreationActivity
+import com.hitomi.cmlibrary.CircleMenu
+import com.hitomi.cmlibrary.OnMenuSelectedListener
 import org.koin.android.viewmodel.ext.android.viewModel
+import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +29,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val myViewModel: MainViewModel by viewModel()
+
+    private lateinit var circleMenu : CircleMenu
+    private lateinit var constraintLayout : ConstraintLayout
+
+    var arrList = arrayOf("0","1","2","3","4")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,17 +51,59 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        /*findViewById<Button>(R.id.btnLocalAction).setOnClickListener {
-            myViewModel.doLocalTestAction()
-        }
+        circleMenu()
+    }
 
-        findViewById<Button>(R.id.btnRemoteAction).setOnClickListener {
-            myViewModel.doRemoteTestAction()
-        }
+    private fun circleMenu() {
+        circleMenu = findViewById(R.id.circle_menu)
+        constraintLayout = findViewById(R.id.constraint_layout)
+        //var index: Int = 0
 
-        findViewById<Button>(R.id.getVersion).setOnClickListener {
-            startActivity(InfoActivity.getStartIntent(this))
-        }*/
+        circleMenu.setMainMenu(Color.parseColor("#CDCDCD"),R.drawable.icon_menu,R.drawable.icon_cancel)
+            circleMenu.addSubMenu(Color.parseColor("#88BEF5"),R.drawable.icon_people_info)
+            circleMenu.addSubMenu(Color.parseColor("#83E85A"),R.drawable.icon_history)
+            circleMenu.addSubMenu(Color.parseColor("#FFB432"),R.drawable.icon_info)
+            circleMenu.addSubMenu(Color.parseColor("#BA53DE"),R.drawable.icon_wifi)
+            circleMenu.addSubMenu(Color.parseColor("#FF8A5C"),R.drawable.icon_data_sensors)
+
+            circleMenu.setOnMenuSelectedListener {
+                    index -> Toast.makeText(this,"You selected"+ arrList[index],Toast.LENGTH_SHORT).show();
+
+                    when(arrList[index]) {
+                        "0" -> {
+                            val intentUserCreation = Intent(this,UserCreationActivity::class.java)
+                            constraintLayout.setBackgroundColor(Color.parseColor("#ECFFFB"))
+                            //Thread.sleep(3000L)
+                            startActivity(intentUserCreation)
+                            finish()
+                        }
+
+                        "1" -> {
+                            val intentLogin = Intent(this,LoginActivity::class.java)
+                            constraintLayout.setBackgroundColor(Color.parseColor("#ECFFFB"))
+                            startActivity(intentLogin)
+                            finish()
+                        }
+
+                        "2" -> {
+                            val intentInfo = Intent(this,InfoActivity::class.java)
+                            constraintLayout.setBackgroundColor(Color.parseColor("#FACA42"))
+                            startActivity(intentInfo)
+                        }
+
+                        "3" -> {
+                            val intentIntro = Intent(this,IntroductionActivity::class.java)
+                            constraintLayout.setBackgroundColor(Color.parseColor("#D3CDE6"))
+                            startActivity(intentIntro)
+                        }
+
+                        "4" -> {
+                            val intentNav = Intent(this,LoginActivity::class.java)
+                            constraintLayout.setBackgroundColor(Color.parseColor("#FFF591"))
+                            startActivity(intentNav)
+                        }
+                    }
+            }
     }
 
     private fun showError(error: Throwable) {
@@ -65,14 +117,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun showLoader(state: Boolean, receivedData: String = "") {
         if (state) {
-            findViewById<ProgressBar>(R.id.loader).visibility = View.VISIBLE
+            /*findViewById<ProgressBar>(R.id.loader).visibility = View.VISIBLE
             findViewById<Button>(R.id.btnRemoteAction).visibility = View.GONE
-            findViewById<Button>(R.id.btnLocalAction).visibility = View.GONE
+            findViewById<Button>(R.id.btnLocalAction).visibility = View.GONE*/
         } else {
-            Toast.makeText(this, receivedData, Toast.LENGTH_SHORT).show()
+            /*Toast.makeText(this, receivedData, Toast.LENGTH_SHORT).show()
             findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
             findViewById<Button>(R.id.btnRemoteAction).visibility = View.VISIBLE
-            findViewById<Button>(R.id.btnLocalAction).visibility = View.VISIBLE
+            findViewById<Button>(R.id.btnLocalAction).visibility = View.VISIBLE*/
         }
     }
 }
