@@ -79,6 +79,7 @@ class SensorRecyclerViewActivity : AppCompatActivity() {
                         startActivity(BatteryActivity.getStartIntent(this))
                     },
                     // Position GPS
+                    // Missing for the moment
                     SensorItem(
                         "Position GPS",
                         R.drawable.icon_data_action
