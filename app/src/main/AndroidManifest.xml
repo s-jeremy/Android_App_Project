@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-feature android:name="android.hardware.sensor.temperature"
+        android:required="true" />
+
     <application
         android:name="com.android_app_project.app.MainApplication"
         android:allowBackup="true"
@@ -12,17 +15,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.android_app_project.app.ui.view.info.InfoActivity"/>
+        <activity android:name=".ui.view.info.InfoActivity"/>
+        <activity android:name=".ui.view.sensor.SensorRecyclerViewActivity"/>
+        <activity android:name=".ui.view.sensor.data_sensors.TemperatureActivity"/>
+        <activity android:name=".ui.view.sensor.data_sensors.PressureActivity"/>
+        <activity android:name=".ui.view.sensor.data_sensors.BatteryActivity"/>
+        <activity android:name=".ui.view.sensor.data_sensors.LightActivity"/>
         <activity android:name=".ui.view.introduction.IntroductionActivity"/>
-        <activity android:name="com.android_app_project.app.ui.view.login.LoginActivity"/>
-        <activity android:name="com.android_app_project.app.ui.view.user_creation.UserCreationActivity"/>
-        <activity android:name="com.android_app_project.app.ui.view.splash.SplashActivity">
+        <activity android:name=".ui.view.login.LoginActivity"/>
+        <activity android:name=".ui.view.user_creation.UserCreationActivity"/>
+        <activity android:name=".ui.view.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.android_app_project.app.ui.view.main.MainActivity"/>
+        <activity android:name=".ui.view.main.MainActivity"/>
     </application>
 
 </manifest>

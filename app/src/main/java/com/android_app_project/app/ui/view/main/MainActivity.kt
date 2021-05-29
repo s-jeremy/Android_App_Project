@@ -14,6 +14,8 @@ import com.android_app_project.app.ui.view.*
 import com.android_app_project.app.ui.view.info.InfoActivity
 import com.android_app_project.app.ui.view.introduction.IntroductionActivity
 import com.android_app_project.app.ui.view.login.LoginActivity
+import com.android_app_project.app.ui.view.sensor.SensorRecyclerViewActivity
+import com.android_app_project.app.ui.view.sensor.data_sensors.TemperatureActivity
 import com.android_app_project.app.ui.view.user_creation.UserCreationActivity
 import com.hitomi.cmlibrary.CircleMenu
 import com.hitomi.cmlibrary.OnMenuSelectedListener
@@ -67,40 +69,40 @@ class MainActivity : AppCompatActivity() {
             circleMenu.addSubMenu(Color.parseColor("#FF8A5C"),R.drawable.icon_data_sensors)
 
             circleMenu.setOnMenuSelectedListener {
-                    index -> Toast.makeText(this,"You selected"+ arrList[index],Toast.LENGTH_SHORT).show();
+                    index -> Toast.makeText(this,"Selection: "+ arrList[index],Toast.LENGTH_SHORT).show();
 
                     when(arrList[index]) {
                         "0" -> {
-                            val intentUserCreation = Intent(this,UserCreationActivity::class.java)
+                            val intentTemperature = Intent(this,TemperatureActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#ECFFFB"))
                             //Thread.sleep(3000L)
-                            startActivity(intentUserCreation)
+                            startActivity(intentTemperature)
                             finish()
                         }
 
                         "1" -> {
-                            val intentLogin = Intent(this,LoginActivity::class.java)
-                            constraintLayout.setBackgroundColor(Color.parseColor("#ECFFFB"))
-                            startActivity(intentLogin)
+                            val intentRecycler = Intent(this,SensorRecyclerViewActivity::class.java)
+                            constraintLayout.setBackgroundColor(Color.parseColor("#96F7D2"))
+                            startActivity(intentRecycler)
                             finish()
                         }
 
                         "2" -> {
-                            val intentInfo = Intent(this,InfoActivity::class.java)
+                            val intentMain1 = Intent(this,MainActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#FACA42"))
-                            startActivity(intentInfo)
+                            startActivity(intentMain1)
                         }
 
                         "3" -> {
-                            val intentIntro = Intent(this,IntroductionActivity::class.java)
+                            val intentMain2 = Intent(this,MainActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#D3CDE6"))
-                            startActivity(intentIntro)
+                            startActivity(intentMain2)
                         }
 
                         "4" -> {
-                            val intentNav = Intent(this,LoginActivity::class.java)
+                            val intentMain3 = Intent(this,MainActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#FFF591"))
-                            startActivity(intentNav)
+                            startActivity(intentMain3)
                         }
                     }
             }
