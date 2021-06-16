@@ -19,4 +19,5 @@
     <string name="page2_title">Développée sous Android Kotlin</string>
     <string name="page3_title">Réalisée par Jérémy et Mehdi</string>
     <string name="infoDev">Jérémy SELO et Mehdi RECHID - A2</string>
+    <string name="locationText">Inconnu</string>
 </resources>

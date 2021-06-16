@@ -10,10 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android_app_project.app.R
 import com.android_app_project.app.databinding.ActivitySensorRecyclerViewBinding
 import com.android_app_project.app.ui.view.main.MainActivity
-import com.android_app_project.app.ui.view.sensor.data_sensors.BatteryActivity
-import com.android_app_project.app.ui.view.sensor.data_sensors.LightActivity
-import com.android_app_project.app.ui.view.sensor.data_sensors.PressureActivity
-import com.android_app_project.app.ui.view.sensor.data_sensors.TemperatureActivity
+import com.android_app_project.app.ui.view.sensor.data_sensors.*
 
 class SensorRecyclerViewActivity : AppCompatActivity() {
 
@@ -84,7 +81,7 @@ class SensorRecyclerViewActivity : AppCompatActivity() {
                         "Position GPS",
                         R.drawable.icon_data_action
                     ) {
-                        startActivity(MainActivity.getStartIntent(this))
+                        startActivity(PositionActivity.getStartIntent(this))
                     }
                 ))
 
