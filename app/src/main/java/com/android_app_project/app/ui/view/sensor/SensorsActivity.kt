@@ -71,5 +71,4 @@ class SensorsActivity : AppCompatActivity(), SensorEventListener {
         TODO("Not yet implemented")
     }
 
-
 }
