@@ -11,17 +11,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import com.android_app_project.app.R
 import com.android_app_project.app.ui.view.*
-import com.android_app_project.app.ui.view.info.InfoActivity
-import com.android_app_project.app.ui.view.introduction.IntroductionActivity
-import com.android_app_project.app.ui.view.login.LoginActivity
 import com.android_app_project.app.ui.view.sensor.SensorRecyclerViewActivity
-import com.android_app_project.app.ui.view.sensor.SensorsActivity
+import com.android_app_project.app.ui.view.send_data.SendDataActivity
 import com.android_app_project.app.ui.view.sensor.data_sensors.TemperatureActivity
-import com.android_app_project.app.ui.view.user_creation.UserCreationActivity
 import com.hitomi.cmlibrary.CircleMenu
-import com.hitomi.cmlibrary.OnMenuSelectedListener
 import org.koin.android.viewmodel.ext.android.viewModel
-import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
@@ -89,7 +83,8 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         "2" -> {
-                            val intentSensors = Intent(this,SensorsActivity::class.java)
+                            val intentSensors = Intent(this,
+                                SendDataActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#FACA42"))
                             startActivity(intentSensors)
                         }

@@ -23,7 +23,7 @@
         <activity android:name=".ui.view.sensor.data_sensors.BatteryActivity"/>
         <activity android:name=".ui.view.sensor.data_sensors.LightActivity"/>
         <activity android:name=".ui.view.sensor.data_sensors.PositionActivity"/>
-        <activity android:name=".ui.view.sensor.SensorsActivity"/>
+        <activity android:name=".ui.view.send_data.SendDataActivity"/>
         <activity android:name=".ui.view.introduction.IntroductionActivity"/>
         <activity android:name=".ui.view.login.LoginActivity"/>
         <activity android:name=".ui.view.user_creation.UserCreationActivity"/>
