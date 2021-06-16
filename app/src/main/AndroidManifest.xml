@@ -26,7 +26,8 @@
         <activity android:name=".ui.view.introduction.IntroductionActivity"/>
         <activity android:name=".ui.view.login.LoginActivity"/>
         <activity android:name=".ui.view.user_creation.UserCreationActivity"/>
-        <activity android:name=".ui.view.splash.SplashActivity">
+        <activity android:name=".ui.view.splash.SplashActivity"/>
+        <activity android:name=".ui.view.collected_data.CollectedDataActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

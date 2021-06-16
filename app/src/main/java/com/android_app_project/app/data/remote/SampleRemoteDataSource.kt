@@ -43,6 +43,17 @@ interface SampleRemoteDataSource {
             @Query("prenom")lastname: String
             ): Int
 
+    @GET("/collecte_data")
+    suspend fun collectData(@Query("id_user") login: Int): String
+
+    @GET("/collecte_data")
+    suspend fun sendData(@Query("id_user") id_user: Int,
+                         @Query("luminosite")luminosite: String,
+                         @Query("batterie")batterie: String,
+                         @Query("pression")pression: String,
+                         @Query("temperature")temperature: String,
+                         @Query("gps")gps: String,): Int
+
 
 
     // Équivalenent en kotlin d'élément « static »

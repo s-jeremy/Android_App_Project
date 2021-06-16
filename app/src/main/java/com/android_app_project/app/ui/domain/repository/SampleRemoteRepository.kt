@@ -9,6 +9,8 @@ interface SampleRemoteRepository {
     suspend fun getVersion(): String
     suspend fun login(login: String,password: String): Int
     suspend fun createUser(username: String,password: String,email: String,firstName: String, lastName: String): Int
+    suspend fun collecteData(id_user: Int): String
+    suspend fun sendData(id_user: Int, luminosite : String, batterie : String, pression : String, temperature : String, gps : String): Int
 }
 
 class SampleRemoteRemoteRepositoryImpl(private val sampleRemoteDataSource: SampleRemoteDataSource) :
@@ -34,6 +36,14 @@ class SampleRemoteRemoteRepositoryImpl(private val sampleRemoteDataSource: Sampl
 
     override suspend fun createUser(username: String,password: String,email: String,firstName: String, lastName: String): Int {
         return sampleRemoteDataSource.createUser(username,password,email,firstName,lastName)
+    }
+
+    override suspend fun collecteData(id_user: Int): String {
+        return sampleRemoteDataSource.collectData(id_user)
+    }
+
+    override suspend fun sendData(id_user: Int, luminosite : String, batterie : String, pression : String, temperature : String, gps : String): Int {
+        return sampleRemoteDataSource.sendData(id_user, luminosite,  batterie, pression, temperature, gps)
     }
 }
 
