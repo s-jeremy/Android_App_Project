@@ -113,7 +113,7 @@ class PositionActivity: AppCompatActivity() {
 
         if (results.isNotEmpty()) {
             //binding.locationText.text = results[0].getAddressLine(0)
-            binding.locationText.text = location.latitude.toString()
+            binding.locationText.text = "Latitude : "+location.latitude.toString()+" Longitude : "+location.longitude.toString()
             //this.position(location);
         }
     }
