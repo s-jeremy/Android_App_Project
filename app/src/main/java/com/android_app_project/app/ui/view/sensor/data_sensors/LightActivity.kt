@@ -54,7 +54,6 @@ class LightActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        //TODO("Not yet implemented")
     }
 
     override fun onSensorChanged(event: SensorEvent) {

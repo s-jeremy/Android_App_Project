@@ -41,7 +41,7 @@ class PressureActivity : AppCompatActivity(), SensorEventListener {
         pressure = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
 
         textPressure = findViewById(R.id.valuePressure)
-
+        sensorManager.registerListener(this,pressure,SensorManager.SENSOR_DELAY_NORMAL)
         if (sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE) != null) {
             // Success! There's a pressure sensor.
             pressure = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
@@ -49,6 +49,7 @@ class PressureActivity : AppCompatActivity(), SensorEventListener {
         } else {
             // Failure! No pressure sensor.
             valuePressure.setText("Pression non disponible")
+
         }
 
         // Activation de l'action retour dans la Toolbar de cette activity

@@ -7,9 +7,11 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.android_app_project.app.R
 import com.android_app_project.app.databinding.ActivitySensorsBinding
+import com.android_app_project.app.ui.view.login.LocalPreferences
 import com.android_app_project.app.ui.view.sensor.data_sensors.PressureActivity
 import kotlinx.android.synthetic.main.activity_pressure.*
 
@@ -23,7 +25,7 @@ class SensorsActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var binding: ActivitySensorsBinding
 
     private lateinit var sensorManager: SensorManager
-    private var pressure: Sensor? =null
+    private var luminosite: Sensor? =null
     private var isPressureSensorAvailable: Boolean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,20 +36,24 @@ class SensorsActivity : AppCompatActivity(), SensorEventListener {
         binding = ActivitySensorsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Pressure
-        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        pressure = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
-
-        sensorManager.registerListener(this,pressure,SensorManager.SENSOR_DELAY_NORMAL)
-
-        if (pressure == null) {
-            // Success! There's a pressure sensor.
-            binding.txtPressure.setText("Pression non disponible")
+        binding.refreshButton.setOnClickListener {
+            val user_id = LocalPreferences.getInstance(this).getSaveStringValue()
+            binding.txtUserId.text = user_id
+            // Luminosite
+            sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+            luminosite = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
+            if (luminosite != null) {
+                // Success! There's a light sensor.
+                sensorManager.registerListener(this, luminosite, SensorManager.SENSOR_DELAY_NORMAL)
+            } else {
+                // Failure! No light sensor.
+                binding.txtLight.text = "Luminosité ambiante non disponible"
+            }
         }
 
         // Activation de l'action retour dans la Toolbar de cette activity
         supportActionBar?.apply {
-            setTitle("Données")
+            title = "Données"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowCustomEnabled(true)
         }
@@ -61,14 +67,14 @@ class SensorsActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event != null) {
-            if (event.sensor.getType() == Sensor.TYPE_PRESSURE) {
-                binding.txtPressure.setText(event.values[0].toString() + " hPa")
+            if (event.sensor.type == Sensor.TYPE_LIGHT) {
+                binding.txtLight.text = event.values[0].toString() + " Lux"
+                sensorManager.unregisterListener(this,luminosite)
             }
         }
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        TODO("Not yet implemented")
     }
 
 }
