@@ -61,7 +61,8 @@ class LoginActivity : AppCompatActivity()  {
 
     private fun showInformation(status: String) {
         Log.d("Resultat de Login: :", status)
-        if(status == "0"){
+        if(status != "-1"){
+            LocalPreferences.getInstance(this).saveStringValue(status)
             startActivity(IntroductionActivity.getStartIntent(this))
         }
 

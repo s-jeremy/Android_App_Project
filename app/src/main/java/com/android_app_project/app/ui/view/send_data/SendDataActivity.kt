@@ -1,65 +1,62 @@
-package com.android_app_project.app.ui.view.user_creation
+package com.android_app_project.app.ui.view.send_data
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.method.HideReturnsTransformationMethod
-import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.android_app_project.app.R
 import com.android_app_project.app.databinding.ActivityUserCreationBinding
-import com.android_app_project.app.ui.di.moduleApp
 import com.android_app_project.app.ui.view.Failed
+import com.android_app_project.app.ui.view.login.LocalPreferences
 import com.android_app_project.app.ui.view.login.LoginActivity
-import kotlinx.android.synthetic.main.activity_user_creation.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.core.context.startKoin
 
-class UserCreationActivity : AppCompatActivity()  {
+class SendDataActivity : AppCompatActivity()  {
 
     companion object {
         fun getStartIntent(ctx: Context): Intent {
-            return Intent(ctx, UserCreationActivity::class.java)
+            return Intent(ctx, SendDataActivity::class.java)
         }
     }
-
+    //TODO("A MODIFIER QUAND LA VUE EST CREE")
     private lateinit var binding: ActivityUserCreationBinding
 
-    private val myViewModel: UserCreationViewModel by viewModel()
+    private val myViewModel: SendDataViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        //TODO("A MODIFIER QUAND LA VUE EST CREE")
         setContentView(R.layout.activity_user_creation)
 
         // Binding de la vue
+        //TODO("A MODIFIER QUAND LA VUE EST CREE")
         binding = ActivityUserCreationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         // Lancement de l'activity Login après un clic sur le bouton Retour
         binding.buttonBack.setOnClickListener {
-            startActivity(LoginActivity.getStartIntent(this))
+            //TODO("VOIR VERS QUELLE PAGE ON RETOURNE")
             onBackPressed()
 
         }
-
-        binding.buttonValidateCreation.setOnClickListener {
-            Log.d("Création User","Création User")
-            myViewModel.createUser(
-                    binding.username.text.toString(),
-                    binding.password.text.toString(),
-                    binding.email.text.toString(),
-                    binding.firstName.text.toString(),
-                    binding.lastName.text.toString())
-        }
+        //TODO("FINIR QUAND BINDING OK")
+        /*binding.buttonSend.setOnClickListener {
+            Log.d("Envoi des données","Envoi des données")
+            val user_id = LocalPreferences.getInstance(this).getSaveStringValue()
+            //myViewModel.sendData(id_user.text.toInt(),
+             binding.luminosite.text.toString(),
+             binding.batterie.text.toString(),
+             binding.pression.text.toString(),
+             binding.temperature.text.toString(),
+             binding.gps.text.toString(),)
+        }*/
 
         myViewModel.states.observe(this, Observer { state ->
             when(state){
-                is UserCreationViewModel.GetUserInformationResult -> showInformation(state.status.toString())
+                is SendDataViewModel.SendDataResult -> showInformation(state.status.toString())
                 is Failed -> finish()
             }
         })
@@ -67,16 +64,12 @@ class UserCreationActivity : AppCompatActivity()  {
     }
 
     private fun showInformation(status: String) {
-        Log.d("Resultat du Signup:", status)
-        if(status == "0"){
-            Toast.makeText(this, "Votre compte à bien était crée.", Toast.LENGTH_SHORT).show()
-            startActivity(LoginActivity.getStartIntent(this))
-        }
-
+        Log.d("Résultat : 0 = OK : ", status)
     }
-
     override fun onBackPressed() {
         super.onBackPressed()
         overridePendingTransition(R.anim.anim_slide_from_left,R.anim.anim_slide_to_right)
     }
 }
+
+
