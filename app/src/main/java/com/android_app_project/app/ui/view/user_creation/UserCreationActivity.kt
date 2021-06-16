@@ -5,12 +5,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.android_app_project.app.R
 import com.android_app_project.app.databinding.ActivityUserCreationBinding
+import com.android_app_project.app.ui.di.moduleApp
+import com.android_app_project.app.ui.view.Failed
 import com.android_app_project.app.ui.view.login.LoginActivity
 import kotlinx.android.synthetic.main.activity_user_creation.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.context.startKoin
 
 class UserCreationActivity : AppCompatActivity()  {
 
@@ -26,6 +32,7 @@ class UserCreationActivity : AppCompatActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_user_creation)
 
         // Binding de la vue
@@ -52,7 +59,29 @@ class UserCreationActivity : AppCompatActivity()  {
         }
 
         binding.buttonValidateCreation.setOnClickListener {
-            //TODO
+            Log.d("Création User","Création User")
+            myViewModel.createUser(
+                    binding.username.text.toString(),
+                    binding.password.text.toString(),
+                    binding.email.text.toString(),
+                    binding.firstName.text.toString(),
+                    binding.lastName.text.toString())
+        }
+
+        myViewModel.states.observe(this, Observer { state ->
+            when(state){
+                is UserCreationViewModel.GetUserInformationResult -> showInformation(state.status.toString())
+                is Failed -> finish()
+            }
+        })
+
+    }
+
+    private fun showInformation(status: String) {
+        Log.d("Resultat du Signup:", status)
+        if(status == "0"){
+            Toast.makeText(this, "Votre compte à bien était crée.", Toast.LENGTH_SHORT).show()
+            startActivity(LoginActivity.getStartIntent(this))
         }
 
     }

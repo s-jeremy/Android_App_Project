@@ -34,6 +34,16 @@ interface SampleRemoteDataSource {
     @GET("/login")
     suspend fun readUsers(@Query("login") login: String, @Query("password")password: String): Int
 
+    @GET("/create_user")
+    suspend fun createUser(
+            @Query("login") username: String,
+            @Query("password")password: String,
+            @Query("email")email: String,
+            @Query("nom")firstname: String,
+            @Query("prenom")lastname: String
+            ): Int
+
+
 
     // Équivalenent en kotlin d'élément « static »
     companion object {

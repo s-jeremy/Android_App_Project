@@ -9,7 +9,7 @@ android {
     buildToolsVersion "29.0.3"
 
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 
     defaultConfig {

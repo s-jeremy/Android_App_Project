@@ -8,6 +8,7 @@ import com.android_app_project.app.ui.domain.repository.SampleRemoteRemoteReposi
 import com.android_app_project.app.ui.view.info.InfoViewModel
 import com.android_app_project.app.ui.view.login.LoginViewModel
 import com.android_app_project.app.ui.view.main.MainViewModel
+import com.android_app_project.app.ui.view.user_creation.UserCreationViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -16,6 +17,7 @@ val appModule = module {
     viewModel { MainViewModel(get(), get()) }
     viewModel { InfoViewModel(get()) }
     viewModel { LoginViewModel(get()) }
+    viewModel { UserCreationViewModel(get()) }
 
     // Sample Remote Data Repository
     single<SampleRemoteRepository>(createdAtStart = true) { SampleRemoteRemoteRepositoryImpl(get()) }
