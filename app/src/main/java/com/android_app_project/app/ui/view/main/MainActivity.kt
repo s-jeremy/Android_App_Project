@@ -15,6 +15,7 @@ import com.android_app_project.app.ui.view.info.InfoActivity
 import com.android_app_project.app.ui.view.introduction.IntroductionActivity
 import com.android_app_project.app.ui.view.login.LoginActivity
 import com.android_app_project.app.ui.view.sensor.SensorRecyclerViewActivity
+import com.android_app_project.app.ui.view.sensor.SensorsActivity
 import com.android_app_project.app.ui.view.sensor.data_sensors.TemperatureActivity
 import com.android_app_project.app.ui.view.user_creation.UserCreationActivity
 import com.hitomi.cmlibrary.CircleMenu
@@ -88,9 +89,9 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         "2" -> {
-                            val intentMain1 = Intent(this,MainActivity::class.java)
+                            val intentSensors = Intent(this,SensorsActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#FACA42"))
-                            startActivity(intentMain1)
+                            startActivity(intentSensors)
                         }
 
                         "3" -> {
