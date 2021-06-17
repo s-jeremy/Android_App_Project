@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.android_app_project.app.R
 import com.android_app_project.app.databinding.ActivityHelpBinding
 
-
+//Activity affichant la description des bouttons du Main
 class HelpActivity : AppCompatActivity() {
 
     companion object {

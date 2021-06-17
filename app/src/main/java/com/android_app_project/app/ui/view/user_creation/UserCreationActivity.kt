@@ -3,20 +3,14 @@ package com.android_app_project.app.ui.view.user_creation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.method.HideReturnsTransformationMethod
-import android.text.method.PasswordTransformationMethod
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.android_app_project.app.R
 import com.android_app_project.app.databinding.ActivityUserCreationBinding
-import com.android_app_project.app.ui.di.moduleApp
 import com.android_app_project.app.ui.view.Failed
 import com.android_app_project.app.ui.view.login.LoginActivity
-import kotlinx.android.synthetic.main.activity_user_creation.*
 import org.koin.android.viewmodel.ext.android.viewModel
-import org.koin.core.context.startKoin
 
 class UserCreationActivity : AppCompatActivity()  {
 
@@ -46,9 +40,9 @@ class UserCreationActivity : AppCompatActivity()  {
             onBackPressed()
 
         }
-
+        //Boutton de lancement de l'API de création d'utilisateur
         binding.buttonValidateCreation.setOnClickListener {
-            Log.d("Création User","Création User")
+            //Transmission des données vers l'API
             myViewModel.createUser(
                     binding.username.text.toString(),
                     binding.password.text.toString(),
@@ -66,11 +60,14 @@ class UserCreationActivity : AppCompatActivity()  {
 
     }
 
+    //Récupération du résultat de l'API et affichage message
     private fun showInformation(status: String) {
-        Log.d("Resultat du Signup:", status)
         if(status == "0"){
-            Toast.makeText(this, "Votre compte à bien était crée.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.signupDoneMsg), Toast.LENGTH_SHORT).show()
             startActivity(LoginActivity.getStartIntent(this))
+        }
+        else{
+            Toast.makeText(this, getString(R.string.signupError_msg), Toast.LENGTH_SHORT).show()
         }
 
     }

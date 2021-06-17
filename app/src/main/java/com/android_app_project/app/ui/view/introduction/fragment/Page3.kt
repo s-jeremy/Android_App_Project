@@ -10,6 +10,7 @@ import com.android_app_project.app.R
 import com.android_app_project.app.ui.view.main.MainActivity
 import kotlinx.android.synthetic.main.fragment_page3.*
 
+//Page qui affiche les développeurs
 class Page3 : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

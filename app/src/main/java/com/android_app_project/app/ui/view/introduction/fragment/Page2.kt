@@ -1,14 +1,15 @@
 package com.android_app_project.app.ui.view.introduction.fragment
 
-import com.android_app_project.app.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.android_app_project.app.R
 
+//Page d'information de la technologie utilisé
 class Page2 : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

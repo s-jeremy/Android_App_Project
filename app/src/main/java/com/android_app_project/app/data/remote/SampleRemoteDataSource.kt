@@ -1,10 +1,6 @@
 package com.android_app_project.app.data.remote
 
 import com.android_app_project.app.BuildConfig
-import com.android_app_project.app.data.models.LoginResult
-import com.android_app_project.app.data.models.PingResult
-import com.android_app_project.app.data.models.RestResult
-import com.android_app_project.app.data.models.UserCreationResult
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -12,27 +8,16 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 interface SampleRemoteDataSource {
 
-    @GET("info/ping?content-type=application/json")
-    @Headers("Content-type: application/json")
-    suspend fun ping(): PingResult
 
-    @GET("info/rest?content-type=application/json")
-    @Headers("Content-type: application/json")
-    suspend fun restInfo(): RestResult
-
-    //@POST("")
-    //@Headers("")
-
+    //Appel de l'API Login
     @GET("/login")
     suspend fun readUsers(@Query("login") login: String, @Query("password")password: String): Int
-
+    //Appel de l'API create user
     @GET("/create_user")
     suspend fun createUser(
             @Query("login") username: String,
@@ -41,10 +26,11 @@ interface SampleRemoteDataSource {
             @Query("nom")firstname: String,
             @Query("prenom")lastname: String
             ): Int
-
+    //Collection des données utilisateurs via user ID
     @GET("/collecte_data")
     suspend fun collectData(@Query("id_user") id_user: Int): Array<String>
 
+    //Envoi des données collecter au serveur
     @GET("/send_data")
     suspend fun sendData(@Query("id_user") id_user: Int,
                          @Query("luminosite")luminosite: String,

@@ -9,6 +9,7 @@ import androidx.navigation.ui.NavigationUI
 import com.android_app_project.app.R
 import kotlinx.android.synthetic.main.activity_introduction.*
 
+//Activity qui permet de contrôler les fragment affichant les informations du projet
 class IntroductionActivity: AppCompatActivity()  {
 
     companion object {

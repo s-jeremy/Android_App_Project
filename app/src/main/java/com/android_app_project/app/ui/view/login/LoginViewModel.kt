@@ -8,15 +8,16 @@ import com.android_app_project.app.ui.view.Failed
 import com.android_app_project.app.ui.view.ViewModelState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class LoginViewModel(
     private val sampleRemoteRepository: SampleRemoteRepository
 ) : BaseViewModel() {
     val states = MutableLiveData<ViewModelState>()
 
+    // Data Class du résultat du login
     data class LoginResult(val status: Int) : ViewModelState()
 
+    //Récupération du résultat de l'API
     fun login( login: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {

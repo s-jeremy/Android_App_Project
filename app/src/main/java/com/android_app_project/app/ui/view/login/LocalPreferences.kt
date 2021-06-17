@@ -3,6 +3,7 @@ package com.android_app_project.app.ui.view.login
 import android.content.Context
 import android.content.SharedPreferences
 
+//Classe LocalPreferences qui permet de stocker l'user ID de l'utilisateur pour envoyer les données collecter plus tard
 class LocalPreferences private constructor(context: Context) {
     //Variable dans laquel on va stocker un String
     private val sharedPreferences: SharedPreferences = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE)

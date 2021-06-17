@@ -24,4 +24,11 @@
     <string name="introduction">Introduction</string>
     <string name="sendData">Envoi de data</string>
     <string name="collectData">Collect de data</string>
+    <string name="toast_identification_failed">Vos identifiants sont incorrectes</string>
+    <string name="empty_user_id">User Id Vide</string>
+    <string name="waiting_for_gps_msg">En attente des données GPS</string>
+    <string name="cant_localize">Localisation impossible</string>
+    <string name="signupError_msg">Erreur lors de la création</string>
+    <string name="signupDoneMsg">Votre compte à bien était crée.</string>
+    <string name="dataSentMsg">Les données ont bien était envoyer.</string>
 </resources>

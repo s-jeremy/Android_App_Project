@@ -13,14 +13,12 @@ import android.location.Geocoder
 import android.location.Location
 import android.os.BatteryManager
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.android_app_project.app.R
 import com.android_app_project.app.databinding.ActivitySendDataBinding
 import com.android_app_project.app.ui.view.login.LocalPreferences
-import com.android_app_project.app.ui.view.login.LoginViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -39,11 +37,13 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
 
     private val myViewModel: SendDataViewModel by viewModel()
 
+    //Classe représentant le manageur des capteurs et les différents capteurs
     private lateinit var sensorManager: SensorManager
     private var luminosite: Sensor? =null
     private var pressure: Sensor? =null
     private var temperature: Sensor? =null
 
+    //Variables pour communiquer avec l'API
     private lateinit var sendluminosite : String
     private lateinit var sendbatterie : String
     private lateinit var sendpression : String
@@ -62,13 +62,13 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
         binding = ActivitySendDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Appui sur le bouton refresh
+        // Appui sur le bouton refresh -> Récupération des informations des capteurs
         binding.refreshButton.setOnClickListener {
-
+            //Récupération de l'user_ID stocker dans le LocalPreferences lors du Login
             val user_id = LocalPreferences.getInstance(this).getSaveStringValue()
             binding.txtUserId.text = user_id
 
-            // Luminosite
+            // Ecoute des events provenants du capteur de luminosite
             sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
             luminosite = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)
             if (luminosite != null) {
@@ -81,7 +81,7 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
 
             }
 
-            // Pression
+            //  Ecoute des events provenants du capteur de Pression
             sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
             pressure = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
             if (pressure != null) {
@@ -93,7 +93,7 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
                 binding.txtPressure.text = sendpression
             }
 
-            // Temperature ambiante
+            //  Ecoute des events provenants du capteur de Temperature ambiante
             sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
             temperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE)
             if (temperature != null) {
@@ -105,23 +105,23 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
                 binding.txtTemperature.text = sendtemperature
             }
 
-            // Batterie
+            // Récupération du niveau de batterie
             val battery = applicationContext.getSystemService(BATTERY_SERVICE) as BatteryManager
             // Get the battery percentage and store it in a INT variable
             val batteryLevel:Int = battery.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-            // Display the variable using a Toast
             sendbatterie=batteryLevel.toString()
             binding.txtBattery.setText(sendbatterie + " %")
 
-            // Position
+            // Récupération de la possition Position
             requestPermission()
+            //Le bouton d'envoi d'information est désactiver de base, il est active que si on a déja collecter les informations
             binding.collectButton.setEnabled(true)
         }
-
+        //Envoi des données collecter vers le serveur via API, l'envoi est désactiver jusqu'a une nouvelle collecte
         binding.collectButton.setOnClickListener {
-            Log.d("Envoi des données","Envoi des données")
+            //La collection des données GPS prend quelques secondes la première fois / Attente de la collecte ou du refus de la permission
             if (binding.txtPosition.text!=""){
-                val user_id = LocalPreferences.getInstance(this).getSaveStringValue()
+
                 myViewModel.sendData(binding.txtUserId.text.toString().toInt(),
                         sendluminosite,
                         sendbatterie,
@@ -129,9 +129,11 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
                         sendtemperature,
                         sendgps)
                 binding.collectButton.setEnabled(false)
+                Toast.makeText(this, getString(R.string.dataSentMsg), Toast.LENGTH_SHORT).show()
             }
             else{
-                Toast.makeText(this, "En attente des données GPS", Toast.LENGTH_SHORT).show()
+                //Message indicant l'attente des données GPS
+                Toast.makeText(this, getString(R.string.waiting_for_gps_msg), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -151,19 +153,19 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
         if (event != null) {
-            // Luminosité
+            // Affichage Luminosité
             if (event.sensor.type == Sensor.TYPE_LIGHT) {
                 sendluminosite=event.values[0].toString()
                 binding.txtLight.text = sendluminosite + " Lux"
                 sensorManager.unregisterListener(this,luminosite)
             }
-            // Pression
+            // Affichage Pression
             if (event.sensor.type == Sensor.TYPE_PRESSURE) {
                 sendpression = event.values[0].toString()
                 binding.txtPressure.text = sendpression + " hPa"
                 sensorManager.unregisterListener(this,pressure)
             }
-            // Temperature ambiante
+            // Affichage Temperature ambiante
             if (event.sensor.type == Sensor.TYPE_AMBIENT_TEMPERATURE) {
                 sendtemperature = event.values[0].toString()
                 binding.txtTemperature.text = sendtemperature + " °C"
@@ -179,7 +181,7 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
     //-------------------------------------------------
     //----------------Methodes Position----------------
     //-------------------------------------------------
-
+    // Demande de la permission de géolocalisation
     private fun requestPermission() {
         if (!hasPermission()) {
             ActivityCompat.requestPermissions(
@@ -190,11 +192,11 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
             getLocation()
         }
     }
-
+    // Fonction qui si oui ou non on a la permission
     private fun hasPermission(): Boolean {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
-
+    // Fonction qui retourne le résultat de la demande de permission
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -212,7 +214,7 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
             }
         }
     }
-
+    //Récupération du location et appel du geoCodeur si permission ok
     @SuppressLint("MissingPermission")
     private fun getLocation() {
         if (hasPermission()) {
@@ -221,11 +223,12 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
                 .addOnSuccessListener { geoCode(it) }
                 .addOnFailureListener {
                     // Remplacer par un vrai bon message
-                    Toast.makeText(this, "Localisation impossible", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.cant_localize), Toast.LENGTH_SHORT).show()
                 }
         }
     }
 
+    // Récupération de la longitude et latitude et écriture des information sur l'activity
     private fun geoCode(location: Location) {
         val geocoder = Geocoder(this, Locale.getDefault())
         val results = geocoder.getFromLocation(location.latitude, location.longitude, 1)
@@ -233,7 +236,6 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
         if (results.isNotEmpty()) {
             sendgps = String.format("%.2f",location.latitude)+"I"+String.format("%.2f",location.longitude)
             sendgps=sendgps.replace(",",".")
-            Log.d("testGPS ",sendgps)
             binding.txtPosition.text = String.format("%.2f",location.latitude)+" / "+String.format("%.2f",location.longitude)
         }
     }
