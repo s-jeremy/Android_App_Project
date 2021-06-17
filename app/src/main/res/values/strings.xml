@@ -20,4 +20,8 @@
     <string name="infoDev">Jérémy SELO et Mehdi RECHID - A2</string>
     <string name="locationText">Inconnu</string>
     <string name="userCreation">S\'inscrire</string>
+    <string name="interrogation">Help</string>
+    <string name="introduction">Introduction</string>
+    <string name="sendData">Envoi de data</string>
+    <string name="collectData">Collect de data</string>
 </resources>

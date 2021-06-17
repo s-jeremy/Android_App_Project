@@ -50,6 +50,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_logout" />
 
+    <TextView
+        android:id="@+id/helpAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/interrogation"
+        android:textColor="@color/colorPrimary"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <com.hitomi.cmlibrary.CircleMenu
         android:id="@+id/circle_menu"
         android:layout_width="300dp"

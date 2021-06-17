@@ -13,6 +13,8 @@ import com.android_app_project.app.R
 import com.android_app_project.app.databinding.ActivityMainBinding
 import com.android_app_project.app.ui.view.*
 import com.android_app_project.app.ui.view.collected_data.CollectedDataActivity
+import com.android_app_project.app.ui.view.help.HelpActivity
+import com.android_app_project.app.ui.view.introduction.IntroductionActivity
 import com.android_app_project.app.ui.view.login.LoginActivity
 import com.android_app_project.app.ui.view.send_data.SendDataActivity
 import com.android_app_project.app.ui.view.sensor.data_sensors.TemperatureActivity
@@ -46,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         setupUi()
 
         logout()
+
+        helpMain()
     }
 
     private fun setupUi() {
@@ -69,48 +73,31 @@ class MainActivity : AppCompatActivity() {
             circleMenu.addSubMenu(Color.parseColor("#88BEF5"),R.drawable.icon_people_info)
             circleMenu.addSubMenu(Color.parseColor("#83E85A"),R.drawable.icon_history)
             circleMenu.addSubMenu(Color.parseColor("#FFB432"),R.drawable.icon_info)
-            circleMenu.addSubMenu(Color.parseColor("#BA53DE"),R.drawable.icon_wifi)
-            circleMenu.addSubMenu(Color.parseColor("#FF8A5C"),R.drawable.icon_data_sensors)
 
             circleMenu.setOnMenuSelectedListener {
                     index -> Toast.makeText(this,"Selection: "+ arrList[index],Toast.LENGTH_SHORT).show();
 
                     when(arrList[index]) {
                         "0" -> {
-                            val intentTemperature = Intent(this,TemperatureActivity::class.java)
+                            val intentTemperature = Intent(this,SendDataActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#ECFFFB"))
                             //Thread.sleep(3000L)
                             startActivity(intentTemperature)
-                            finish()
+                            //finish()
                         }
 
                         "1" -> {
                             val intentRecycler = Intent(this,CollectedDataActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#96F7D2"))
                             startActivity(intentRecycler)
-                            finish()
+                            //finish()
                         }
 
                         "2" -> {
-                            val intentSensors = Intent(this,
-                                SendDataActivity::class.java)
+                            val intentIntro = Intent(this, IntroductionActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#FACA42"))
-                            startActivity(intentSensors)
-                            finish()
-                        }
-
-                        "3" -> {
-                            val intentMain2 = Intent(this,MainActivity::class.java)
-                            constraintLayout.setBackgroundColor(Color.parseColor("#D3CDE6"))
-                            startActivity(intentMain2)
-                            finish()
-                        }
-
-                        "4" -> {
-                            val intentMain3 = Intent(this,MainActivity::class.java)
-                            constraintLayout.setBackgroundColor(Color.parseColor("#FFF591"))
-                            startActivity(intentMain3)
-                            finish()
+                            startActivity(intentIntro)
+                            //finish()
                         }
                     }
             }
@@ -143,6 +130,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
             finish() // Destroy MainActivity and not exist in Back stack
+        }
+    }
+
+    private fun helpMain() {
+        binding.helpAction.setOnClickListener {
+            startActivity(HelpActivity.getStartIntent(this))
         }
     }
 }
