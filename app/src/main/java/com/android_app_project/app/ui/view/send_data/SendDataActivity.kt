@@ -120,14 +120,19 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
 
         binding.collectButton.setOnClickListener {
             Log.d("Envoi des données","Envoi des données")
-            val user_id = LocalPreferences.getInstance(this).getSaveStringValue()
-            myViewModel.sendData(binding.txtUserId.text.toString().toInt(),
-            sendluminosite,
-            sendbatterie,
-            sendpression,
-            sendtemperature,
-            sendgps)
-            //binding.collectButton.setEnabled(false)
+            if (binding.txtPosition.text!=""){
+                val user_id = LocalPreferences.getInstance(this).getSaveStringValue()
+                myViewModel.sendData(binding.txtUserId.text.toString().toInt(),
+                        sendluminosite,
+                        sendbatterie,
+                        sendpression,
+                        sendtemperature,
+                        sendgps)
+                binding.collectButton.setEnabled(false)
+            }
+            else{
+                Toast.makeText(this, "En attente des données GPS", Toast.LENGTH_SHORT).show()
+            }
         }
 
         // Activation de l'action retour dans la Toolbar de cette activity
@@ -200,8 +205,8 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
                     // Permission obtenue, Nous continuons la suite de la logique.
                     getLocation()
                 } else {
-                    // TODO
-                    // Permission non accepté, expliqué ici via une activité ou une dialog pourquoi nous avons besoin de la permission
+                    // Permission non accepté
+                    binding.txtPosition.text="NA"
                 }
                 return
             }
