@@ -44,7 +44,7 @@ interface SampleRemoteDataSource {
             ): Int
 
     @GET("/collecte_data")
-    suspend fun collectData(@Query("id_user") login: Int): String
+    suspend fun collectData(@Query("id_user") id_user: Int): String
 
     @GET("/send_data")
     suspend fun sendData(@Query("id_user") id_user: Int,

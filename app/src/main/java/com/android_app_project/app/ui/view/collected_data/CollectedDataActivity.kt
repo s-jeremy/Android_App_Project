@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.android_app_project.app.R
+import com.android_app_project.app.databinding.ActivityCollectedDataBinding
 import com.android_app_project.app.databinding.ActivityUserCreationBinding
 import com.android_app_project.app.ui.view.Failed
 import com.android_app_project.app.ui.view.login.LoginActivity
@@ -20,68 +21,44 @@ class CollectedDataActivity : AppCompatActivity()  {
             return Intent(ctx, CollectedDataActivity::class.java)
         }
     }
-    //TODO("A MODIFIER QUAND LA VUE EST CREE")
-    private lateinit var binding: ActivityUserCreationBinding
+    private lateinit var binding: ActivityCollectedDataBinding
 
     private val myViewModel: CollectedDataViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //TODO("A MODIFIER QUAND LA VUE EST CREE")
-        setContentView(R.layout.activity_user_creation)
+        setContentView(R.layout.activity_collected_data)
 
         // Binding de la vue
-        //TODO("A MODIFIER QUAND LA VUE EST CREE")
-        binding = ActivityUserCreationBinding.inflate(layoutInflater)
+        binding = ActivityCollectedDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Gestion de l'affichage du mot de passe
-        /*password.transformationMethod = PasswordTransformationMethod.getInstance()
-        binding.buttonShow.setOnClickListener {
-            if(buttonShow.text.toString().equals("Montrer")){
-                password.transformationMethod = HideReturnsTransformationMethod.getInstance()
-                binding.buttonShow.text = "Cacher"
-            } else{
-                password.transformationMethod = PasswordTransformationMethod.getInstance()
-                binding.buttonShow.text = "Montrer"
-            }
-        }*/
-
-        // Lancement de l'activity Login après un clic sur le bouton Retour
-        binding.buttonBack.setOnClickListener {
-            //TODO("VOIR VERS QUELLE PAGE ON RETOURNE")
-            startActivity(LoginActivity.getStartIntent(this))
-            onBackPressed()
-
-        }
-        //TODO("FINIR QUAND BINDING OK")
-        /*binding.buttonCollecte.setOnClickListener {
+        binding.collectButton.setOnClickListener {
             Log.d("Affichage Data","Afficher Data")
-            //myViewModel.collecteData(binding.id_user.text.toString().toInt())
-        }*/
+            myViewModel.collecteData(binding.userId.text.toString().toInt())
+        }
+
 
         myViewModel.states.observe(this, Observer { state ->
             when(state){
                 is CollectedDataViewModel.CollecteDataResult -> showInformation(state.status)
-                is Failed -> finish()
             }
         })
 
     }
 
     private fun showInformation(status: String) {
-        Log.d("Resultat du Signup:", status)
+        Log.d("Resultat Récupération:", status)
         if(status == "NOT-FOUND"){
             Toast.makeText(this, "L'utilisateur n'a pas était trouver.", Toast.LENGTH_SHORT).show()
         }
         else{
-            //TODO("A FINIR QUAND VUE OK")
             //Ecriture dans les TextView dédiés
-            //binding.luminosite.text="XXX"
-            //binding.batterie.text="XXX"
-            //binding.pression.text="XXX"
-            //binding.temperature.text="XXX"
-            //binding.gps.text="XXX"
+            binding.txtLight.text="XXX"
+            binding.txtBattery.text="XXX"
+            binding.txtPressure.text="XXX"
+            binding.txtTemperature.text="XXX"
+            binding.txtPosition.text="XXX"
         }
     }
 

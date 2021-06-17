@@ -1,5 +1,6 @@
 package com.android_app_project.app.ui.domain.repository
 
+import android.util.Log
 import com.android_app_project.app.data.models.LoginResult
 import com.android_app_project.app.data.remote.SampleRemoteDataSource
 import kotlinx.coroutines.delay
@@ -39,6 +40,7 @@ class SampleRemoteRemoteRepositoryImpl(private val sampleRemoteDataSource: Sampl
     }
 
     override suspend fun collecteData(id_user: Int): String {
+        Log.d("test", "test")
         return sampleRemoteDataSource.collectData(id_user)
     }
 

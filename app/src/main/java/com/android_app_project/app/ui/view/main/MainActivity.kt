@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import com.android_app_project.app.R
 import com.android_app_project.app.ui.view.*
+import com.android_app_project.app.ui.view.collected_data.CollectedDataActivity
 import com.android_app_project.app.ui.view.sensor.SensorRecyclerViewActivity
 import com.android_app_project.app.ui.view.send_data.SendDataActivity
 import com.android_app_project.app.ui.view.sensor.data_sensors.TemperatureActivity
@@ -76,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         "1" -> {
-                            val intentRecycler = Intent(this,SensorRecyclerViewActivity::class.java)
+                            val intentRecycler = Intent(this,CollectedDataActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#96F7D2"))
                             startActivity(intentRecycler)
                             finish()
@@ -87,18 +88,21 @@ class MainActivity : AppCompatActivity() {
                                 SendDataActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#FACA42"))
                             startActivity(intentSensors)
+                            finish()
                         }
 
                         "3" -> {
                             val intentMain2 = Intent(this,MainActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#D3CDE6"))
                             startActivity(intentMain2)
+                            finish()
                         }
 
                         "4" -> {
                             val intentMain3 = Intent(this,MainActivity::class.java)
                             constraintLayout.setBackgroundColor(Color.parseColor("#FFF591"))
                             startActivity(intentMain3)
+                            finish()
                         }
                     }
             }
