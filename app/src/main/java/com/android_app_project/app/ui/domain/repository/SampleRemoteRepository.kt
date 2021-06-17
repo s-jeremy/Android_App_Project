@@ -10,7 +10,7 @@ interface SampleRemoteRepository {
     suspend fun getVersion(): String
     suspend fun login(login: String,password: String): Int
     suspend fun createUser(username: String,password: String,email: String,firstName: String, lastName: String): Int
-    suspend fun collecteData(id_user: Int): String
+    suspend fun collecteData(id_user: Int): Array<String>
     suspend fun sendData(id_user: Int, luminosite : String, batterie : String, pression : String, temperature : String, gps : String): Int
 }
 
@@ -39,7 +39,7 @@ class SampleRemoteRemoteRepositoryImpl(private val sampleRemoteDataSource: Sampl
         return sampleRemoteDataSource.createUser(username,password,email,firstName,lastName)
     }
 
-    override suspend fun collecteData(id_user: Int): String {
+    override suspend fun collecteData(id_user: Int): Array<String> {
         Log.d("test", "test")
         return sampleRemoteDataSource.collectData(id_user)
     }

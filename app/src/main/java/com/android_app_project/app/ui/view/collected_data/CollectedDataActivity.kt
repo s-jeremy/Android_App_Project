@@ -9,9 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.android_app_project.app.R
 import com.android_app_project.app.databinding.ActivityCollectedDataBinding
-import com.android_app_project.app.databinding.ActivityUserCreationBinding
 import com.android_app_project.app.ui.view.Failed
-import com.android_app_project.app.ui.view.login.LoginActivity
+import com.android_app_project.app.ui.view.user_creation.UserCreationViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class CollectedDataActivity : AppCompatActivity()  {
@@ -41,24 +40,24 @@ class CollectedDataActivity : AppCompatActivity()  {
 
         myViewModel.states.observe(this, Observer { state ->
             when(state){
-                is CollectedDataViewModel.CollecteDataResult -> showInformation(state.status)
+                is CollectedDataViewModel.GetCollectDataResult -> showInformation(state.status)
+                is Failed -> finish()
             }
         })
 
     }
 
-    private fun showInformation(status: String) {
-        Log.d("Resultat Récupération:", status)
-        if(status == "NOT-FOUND"){
+    private fun showInformation(status: Array<String>) {
+        if(status[0] == "NOT-FOUND"){
             Toast.makeText(this, "L'utilisateur n'a pas était trouver.", Toast.LENGTH_SHORT).show()
         }
         else{
             //Ecriture dans les TextView dédiés
-            binding.txtLight.text="XXX"
-            binding.txtBattery.text="XXX"
-            binding.txtPressure.text="XXX"
-            binding.txtTemperature.text="XXX"
-            binding.txtPosition.text="XXX"
+            binding.txtLight.text=status[0]
+            binding.txtBattery.text=status[1]
+            binding.txtPressure.text=status[2]
+            binding.txtTemperature.text=status[3]
+            binding.txtPosition.text=status[4]
         }
     }
 

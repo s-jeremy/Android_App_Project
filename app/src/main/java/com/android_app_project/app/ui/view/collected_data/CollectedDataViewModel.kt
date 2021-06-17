@@ -15,14 +15,14 @@ class CollectedDataViewModel(
 ) : BaseViewModel() {
     val states = MutableLiveData<ViewModelState>()
 
-    data class CollecteDataResult(val status: String) : ViewModelState()
+    data class GetCollectDataResult(val status: Array<String>) : ViewModelState()
 
     fun collecteData(id_user: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 val status = sampleRemoteRepository.collecteData(id_user)
                 Log.d("test2","test2")
-                states.postValue(CollecteDataResult(status))
+                states.postValue(GetCollectDataResult(status))
             } catch (err: Exception) {
                 states.postValue(Failed(err))
             }

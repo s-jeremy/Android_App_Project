@@ -29,7 +29,6 @@ interface SampleRemoteDataSource {
 
     //@POST("")
     //@Headers("")
-    //suspend fun userCreation(): UserCreationResult
 
     @GET("/login")
     suspend fun readUsers(@Query("login") login: String, @Query("password")password: String): Int
@@ -44,7 +43,7 @@ interface SampleRemoteDataSource {
             ): Int
 
     @GET("/collecte_data")
-    suspend fun collectData(@Query("id_user") id_user: Int): String
+    suspend fun collectData(@Query("id_user") id_user: Int): Array<String>
 
     @GET("/send_data")
     suspend fun sendData(@Query("id_user") id_user: Int,
