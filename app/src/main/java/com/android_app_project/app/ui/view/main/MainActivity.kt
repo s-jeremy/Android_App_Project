@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity() {
     private fun circleMenu() {
         circleMenu = findViewById(R.id.circle_menu)
         constraintLayout = findViewById(R.id.constraint_layout)
-        //var index: Int = 0
 
         circleMenu.setMainMenu(Color.parseColor("#CDCDCD"),R.drawable.icon_menu,R.drawable.icon_cancel)
             circleMenu.addSubMenu(Color.parseColor("#88BEF5"),R.drawable.icon_people_info)
