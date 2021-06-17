@@ -12,13 +12,18 @@
 
 Dans le cadre de notre **cursus d'ingénieur ESEO**, nous avons du développer une application Android au cours de la matière **Développement des applications client / serveur sous Android**.
 
-> **Développeurs : Jérémy SELO et Mehdi RECHID**
+> Développeurs : `Jérémy SELO et Mehdi RECHID`
 
 ## :memo: Application Client / Serveur
 
 ## Captures d'écran
+      
+      
+<p float="left">
+  <img src="/ScreenLoginMenu.png" width="200" />
+  <img src="/ScreenMainMenu.png" width="200" /> 
+</p>
 
-> *En cours*
 
 ## Serveur
 
