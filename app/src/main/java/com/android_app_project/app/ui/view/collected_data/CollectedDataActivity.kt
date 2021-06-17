@@ -41,7 +41,6 @@ class CollectedDataActivity : AppCompatActivity()  {
             }
         }
 
-
         myViewModel.states.observe(this, Observer { state ->
             when(state){
                 is CollectedDataViewModel.GetCollectDataResult -> showInformation(state.status)

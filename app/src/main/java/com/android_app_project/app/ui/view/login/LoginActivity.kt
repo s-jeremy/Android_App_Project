@@ -4,21 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.android_app_project.app.R
-import com.android_app_project.app.data.remote.SampleRemoteDataSource
 import com.android_app_project.app.databinding.ActivityLoginBinding
 import com.android_app_project.app.ui.view.Failed
 import com.android_app_project.app.ui.view.introduction.IntroductionActivity
-import com.android_app_project.app.ui.view.main.MainActivity
 import com.android_app_project.app.ui.view.user_creation.UserCreationActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity()  {
@@ -66,6 +58,10 @@ class LoginActivity : AppCompatActivity()  {
             startActivity(IntroductionActivity.getStartIntent(this))
         }
 
+    }
+
+    override fun onBackPressed() {
+        // do nothing.
     }
 
 }

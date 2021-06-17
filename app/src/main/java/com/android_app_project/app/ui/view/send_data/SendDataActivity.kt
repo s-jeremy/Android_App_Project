@@ -127,7 +127,7 @@ class SendDataActivity : AppCompatActivity(), SensorEventListener {
             sendpression,
             sendtemperature,
             sendgps)
-            binding.collectButton.setEnabled(false)
+            //binding.collectButton.setEnabled(false)
         }
 
         // Activation de l'action retour dans la Toolbar de cette activity
