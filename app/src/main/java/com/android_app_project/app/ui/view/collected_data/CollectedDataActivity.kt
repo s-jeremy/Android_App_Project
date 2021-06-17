@@ -37,7 +37,6 @@ class CollectedDataActivity : AppCompatActivity()  {
             myViewModel.collecteData(binding.userId.text.toString().toInt())
         }
 
-
         myViewModel.states.observe(this, Observer { state ->
             when(state){
                 is CollectedDataViewModel.GetCollectDataResult -> showInformation(state.status)

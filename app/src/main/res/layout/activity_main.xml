@@ -9,49 +9,6 @@
     android:background="@color/colorSecondary"
     tools:context=".ui.view.main.MainActivity">
 
-    <!--ProgressBar
-        android:id="@+id/loader"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:indeterminate="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnLocalAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Local!"
-        app:layout_constraintBottom_toTopOf="@id/btnRemoteAction"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnRemoteAction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Remote!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLocalAction" />
-
-    <Button
-        android:id="@+id/getVersion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Version!"
-        app:layout_constraintBottom_toTopOf="@+id/btnRemoteAction"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLocalAction" /-->
-
     <TextView
         android:id="@+id/hello"
         android:layout_width="wrap_content"
@@ -82,6 +39,17 @@
         app:layout_constraintStart_toStartOf="@+id/hello"
         app:layout_constraintTop_toBottomOf="@+id/hello" />
 
+    <ImageView
+        android:id="@+id/logoutAction"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="Information"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_logout" />
+
     <com.hitomi.cmlibrary.CircleMenu
         android:id="@+id/circle_menu"
         android:layout_width="300dp"
@@ -91,8 +59,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

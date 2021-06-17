@@ -10,9 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import com.android_app_project.app.R
+import com.android_app_project.app.databinding.ActivityMainBinding
 import com.android_app_project.app.ui.view.*
 import com.android_app_project.app.ui.view.collected_data.CollectedDataActivity
-import com.android_app_project.app.ui.view.sensor.SensorRecyclerViewActivity
+import com.android_app_project.app.ui.view.login.LoginActivity
 import com.android_app_project.app.ui.view.send_data.SendDataActivity
 import com.android_app_project.app.ui.view.sensor.data_sensors.TemperatureActivity
 import com.hitomi.cmlibrary.CircleMenu
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var circleMenu : CircleMenu
     private lateinit var constraintLayout : ConstraintLayout
+    private lateinit var binding: ActivityMainBinding
 
     var arrList = arrayOf("0","1","2","3","4")
 
@@ -37,7 +39,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Binding de la vue
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         setupUi()
+
+        logout()
     }
 
     private fun setupUi() {
@@ -127,6 +135,14 @@ class MainActivity : AppCompatActivity() {
             findViewById<ProgressBar>(R.id.loader).visibility = View.GONE
             findViewById<Button>(R.id.btnRemoteAction).visibility = View.VISIBLE
             findViewById<Button>(R.id.btnLocalAction).visibility = View.VISIBLE*/
+        }
+    }
+
+    private fun logout() {
+        binding.logoutAction.setOnClickListener {
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish() // Destroy MainActivity and not exist in Back stack
         }
     }
 }
