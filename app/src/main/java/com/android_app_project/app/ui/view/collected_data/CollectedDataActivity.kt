@@ -33,8 +33,12 @@ class CollectedDataActivity : AppCompatActivity()  {
         setContentView(binding.root)
 
         binding.collectButton.setOnClickListener {
-            Log.d("Affichage Data","Afficher Data")
-            myViewModel.collecteData(binding.userId.text.toString().toInt())
+            if (!binding.userId.text.isNullOrEmpty()){
+                myViewModel.collecteData(binding.userId.text.toString().toInt())
+            }
+            else{
+                Toast.makeText(this, "User Id Vide", Toast.LENGTH_SHORT).show()
+            }
         }
 
         myViewModel.states.observe(this, Observer { state ->
@@ -52,12 +56,34 @@ class CollectedDataActivity : AppCompatActivity()  {
         }
         else{
             //Ecriture dans les TextView dédiés
-            binding.txtLight.text=status[0]
-            binding.txtBattery.text=status[1]
-            binding.txtPressure.text=status[2]
-            binding.txtTemperature.text=status[3]
-            binding.txtPosition.text=status[4]
+            binding.txtUserId.text=binding.userId.text
+            if (status[0]=="NA"){
+                binding.txtLight.text=status[0]
+            }
+            else {
+                binding.txtLight.text = status[0] + " lux"
+            }
+            binding.txtBattery.text=status[1]+"%"
+            if (status[2]=="NA") {
+                binding.txtPressure.text = status[2]
+            }
+            else{
+                binding.txtPressure.text = status[2] + " hPa"
+            }
+            if (status[2]=="NA") {
+                binding.txtTemperature.text = status[3]
+            }
+            else{
+                binding.txtTemperature.text = status[3] + " °C"
+            }
+            binding.txtPosition.text=status[4].replace("I"," / ")
         }
+    }
+
+    // Activation Bouton Retour
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
     }
 
     override fun onBackPressed() {
